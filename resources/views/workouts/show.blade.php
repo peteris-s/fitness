@@ -80,6 +80,7 @@
                         </div>
                     </div>
 
+                    {{-- Exercises: izmanto $exercises ar pivot datiem (sets/reps/duration/rest) --}}
                     <h2 class="text-2xl font-bold mb-4">Exercises</h2>
                     <div class="space-y-4 mb-6">
                         @forelse ($exercises as $exercise)

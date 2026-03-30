@@ -35,7 +35,8 @@
                         </div>
 
                         <div class="bg-white dark:bg-slate-700 p-4 rounded-lg shadow-sm dark:shadow-none">
-                            <form id="target-form" method="POST" action="{{ route('calories.target') }}">
+                                {{-- Forma `#target-form` izmanto AJAX, lai saglabātu `daily_calorie_target` un atjauninātu skaitu bez lapas pārlādes. --}}
+                                <form id="target-form" method="POST" action="{{ route('calories.target') }}">
                                 @csrf
                                 @method('PATCH')
                                 <label for="daily_calorie_target" class="block text-gray-700 dark:text-gray-200 font-bold mb-2">Set daily calorie target</label>
@@ -52,6 +53,7 @@
                     </div>
 
                     <div class="overflow-x-auto">
+                        {{-- Tabula rāda pēdējos kaloriju ierakstus, mainīgais: $logs --}}
                         <table class="w-full">
                             <thead class="bg-gray-200 dark:bg-gray-700">
                                 <tr>

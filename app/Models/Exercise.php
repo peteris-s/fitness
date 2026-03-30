@@ -18,6 +18,7 @@ class Exercise extends Model
 
     public function workouts()
     {
+        // Daudz-uz-daudz attiecība: kuri treniņi izmanto šo vingrinājumu
         return $this->belongsToMany(Workout::class, 'workout_exercises')
             ->withPivot('sets', 'reps', 'duration_seconds', 'rest_seconds', 'order')
             ->withTimestamps();

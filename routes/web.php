@@ -6,12 +6,37 @@ use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\ExerciseController;
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Workout;
+
 Route::get('/', function () {
-    return view('welcome');
+    $featured = Workout::where('is_public', true)->with('user')->orderByDesc('created_at')->limit(6)->get();
+    return view('welcome', ['featured' => $featured]);
 });
 
+// Sagatavo featured workouts un lietotāja kaloriju datus Dashboard skatiem.
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $featured = Workout::where('is_public', true)->with('user')->orderByDesc('created_at')->limit(6)->get();
+
+    $user = auth()->user();
+    $totalToday = null;
+    $dailyTarget = null;
+    $recentLogs = collect();
+    $recentWorkoutName = null;
+    $recentWorkoutDate = null;
+
+    if ($user) {
+        $today = now()->format('Y-m-d');
+        $totalToday = $user->calorieLogs()->whereDate('log_date', $today)->sum('calories');
+        $dailyTarget = $user->daily_calorie_target;
+        $recentLogs = $user->calorieLogs()->orderBy('log_date', 'desc')->limit(3)->get();
+        $last = $user->userWorkouts()->whereNotNull('completed_at')->orderByDesc('completed_at')->with('workout')->first();
+        if ($last && $last->workout) {
+            $recentWorkoutName = $last->workout->name;
+            $recentWorkoutDate = optional($last->completed_at)->format('Y-m-d');
+        }
+    }
+
+    return view('dashboard', compact('featured', 'totalToday', 'dailyTarget', 'recentLogs', 'recentWorkoutName', 'recentWorkoutDate'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

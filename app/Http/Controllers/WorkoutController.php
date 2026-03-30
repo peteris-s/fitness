@@ -11,20 +11,24 @@ use Illuminate\Support\Facades\DB;
 
 class WorkoutController extends Controller
 {
+    // Kontrolieris pārvalda treniņu CRUD, publisko pārlūkošanu un kopēšanu.
     public function index()
     {
+        // Rāda lietotāja izveidotos treniņus lapotnē `workouts.index`.
         $workouts = auth()->user()->workouts()->orderByDesc('created_at')->paginate(12);
         return view('workouts.index', compact('workouts'));
     }
 
     public function create()
     {
+        // Rāda formu jauna treniņa izveidei; nodrošina pieejamos vingrinājumus.
         $exercises = Exercise::orderBy('name')->get();
         return view('workouts.create', compact('exercises'));
     }
 
     public function store(Request $request)
     {
+        // Validē un saglabā jaunu treniņu un tā vingrinājumus
         $rules = [
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:1000',
@@ -78,11 +82,13 @@ class WorkoutController extends Controller
             }
         }
 
+        // Pāradresē uz jauna treniņa skatu ar veiksmīgas saglabāšanas paziņojumu
         return redirect()->route('workouts.show', $w)->with('success', 'Workout created!');
     }
 
     public function show(Workout $workout)
     {
+        // Palielina skatu skaitu un uzstāda vajadzīgos mainīgos treniņa skata renderēšanai
         $workout->incrementViews();
         $exercises = $workout->exercises()->withPivot('sets', 'reps', 'duration_seconds', 'rest_seconds')->get();
         $completions = $workout->userWorkouts()->count();
@@ -91,6 +97,7 @@ class WorkoutController extends Controller
 
     public function edit(Workout $workout)
     {
+        // Rāda rediģēšanas formu (autorizācija nepieciešama)
         $this->authorize('update', $workout);
         $exercises = Exercise::orderBy('name')->get();
         $workoutExercises = $workout->exercises()->withPivot('sets', 'reps', 'duration_seconds', 'rest_seconds')->get();
@@ -99,6 +106,7 @@ class WorkoutController extends Controller
 
     public function update(Request $request, Workout $workout)
     {
+        // Atjaunina treniņa datus un pārraksta saistītos vingrinājumus
         $this->authorize('update', $workout);
         $rules = [
             'name' => 'required|string|max:255',
@@ -157,6 +165,7 @@ class WorkoutController extends Controller
 
     public function destroy(Workout $workout)
     {
+        // Dzēš treniņu (autorizācija)
         $this->authorize('delete', $workout);
         $workout->delete();
         return redirect()->route('workouts.index')->with('success', 'Workout deleted!');
@@ -164,6 +173,7 @@ class WorkoutController extends Controller
 
     public function complete(Workout $workout, Request $request)
     {
+        // Atzīmē treniņu kā pabeigtu un saglabā pabeigšanas informāciju
         $v = $request->validate(['duration_minutes' => 'nullable|integer|min:1|max:480', 'notes' => 'nullable|string|max:1000']);
         auth()->user()->userWorkouts()->create(['workout_id' => $workout->id, 'completed_at' => now(), 'duration_minutes' => $v['duration_minutes'] ?? null, 'notes' => $v['notes'] ?? null]);
         return redirect()->route('workouts.show', $workout)->with('success', 'Workout marked as completed!');

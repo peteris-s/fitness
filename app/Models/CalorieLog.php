@@ -23,6 +23,7 @@ class CalorieLog extends Model
 
     public function user()
     {
+        // Ieraksts pieder pie lietotāja
         return $this->belongsTo(User::class);
     }
 }

@@ -1,3 +1,7 @@
+{{--
+    Navigācija: satur saites uz galvenajām lapām un tēmas pārslēdzēju.
+    Pogai `#theme-toggle` tiek piesaistīts JS handler skriptā `layouts.app`.
+--}}
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,13 +28,16 @@
                     <x-nav-link :href="route('plans.index')" :active="request()->routeIs('plans.*')">
                         {{ __('Workout Plans') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('workouts.browse')" :active="request()->routeIs('workouts.*')">
+                        {{ __('Workouts') }}
+                    </x-nav-link>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <!-- Theme toggle -->
-                <button id="theme-toggle" type="button" title="Toggle dark mode" class="me-3 p-2 rounded-md text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white" aria-label="Toggle theme">
+                <button id="theme-toggle" type="button" title="Toggle dark mode" class="me-3 p-2 rounded-md text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white bg-white/10 dark:bg-white/5 border border-transparent hover:border-gray-200 dark:hover:border-gray-600 focus:ring-2 focus:ring-blue-400" aria-label="Toggle theme" aria-pressed="false">
                     <!-- Moon (dark) icon -->
                     <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M21.752 15.002A9.718 9.718 0 0112.75 22C6.201 22 1 16.799 1 10.25 1 4.701 6.201-.5 12.75-.5c.756 0 1.506.064 2.244.19.422.07.735.45.735.882 0 .238-.092.466-.255.64a.996.996 0 01-1.12.233 7.472 7.472 0 00-3.39-.737C7.507 0 3.25 4.257 3.25 9.75 3.25 15.243 7.507 19.5 13 19.5c3.04 0 5.77-1.46 7.502-3.748.293-.382.117-.914-.75-.75z"/>
@@ -97,6 +104,9 @@
             <x-responsive-nav-link :href="route('plans.index')" :active="request()->routeIs('plans.*')">
                 {{ __('Workout Plans') }}
             </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('workouts.browse')" :active="request()->routeIs('workouts.*')">
+                    {{ __('Workouts') }}
+                </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

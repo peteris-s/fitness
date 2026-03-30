@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\CalorieLog;
 use Illuminate\Http\Request;
 
+/**
+ * CalorieController
+ * Rūpējas par kaloriju ierakstu CRUD un statistiku.
+ */
 class CalorieController extends Controller
 {
     public function index()
     {
+        // Rāda lietotāja kaloriju ierakstus, šodienas summu un ikdienas mērķi.
         $user = auth()->user();
         $logs = $user->calorieLogs()->orderBy('log_date', 'desc')->paginate(20);
         $today = now()->format('Y-m-d');
@@ -19,11 +24,13 @@ class CalorieController extends Controller
 
     public function create()
     {
+        // Rāda formu jauna ieraksta pievienošanai
         return view('calories.create');
     }
 
     public function store(Request $request)
     {
+        // Saglabā jaunu kaloriju ierakstu pēc validācijas
         $validated = $request->validate([
             'food_name' => 'required|string|max:255',
             'calories' => 'required|integer|min:1|max:10000',
@@ -36,12 +43,14 @@ class CalorieController extends Controller
 
     public function edit(CalorieLog $calorieLog)
     {
+        // Rāda rediģēšanas formu (autorizācija pārbaudīta)
         $this->authorize('update', $calorieLog);
         return view('calories.edit', compact('calorieLog'));
     }
 
     public function update(Request $request, CalorieLog $calorieLog)
     {
+        // Atjaunina ierakstu pēc validācijas
         $this->authorize('update', $calorieLog);
         $validated = $request->validate([
             'food_name' => 'required|string|max:255',
@@ -55,6 +64,7 @@ class CalorieController extends Controller
 
     public function destroy(CalorieLog $calorieLog)
     {
+        // Dzēš ierakstu (autorizācija)
         $this->authorize('delete', $calorieLog);
         $calorieLog->delete();
         return redirect()->route('calories.index')->with('success', 'Calories deleted!');
@@ -62,6 +72,7 @@ class CalorieController extends Controller
 
         public function updateTarget(Request $request)
         {
+            // Saglabā/atjauno lietotāja ikdienas kaloriju mērķi; atbalsta AJAX
             $validated = $request->validate([
                 'daily_calorie_target' => 'nullable|integer|min:0|max:100000',
             ]);
@@ -79,6 +90,7 @@ class CalorieController extends Controller
 
         public function stats()
         {
+            // Sagatavo datus statistikai pēdējām 7 un 30 dienām
             $user = auth()->user();
             $today = now();
             $last7Days = now()->subDays(7);

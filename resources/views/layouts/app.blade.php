@@ -11,10 +11,27 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <!-- Apply stored theme early to avoid flash -->
+        {{--
+            Šis skripts nolasīs `localStorage.theme` un pieliks `dark` klasi <html> elementam
+            pirms Tailwind renderēšanas, lai novērstu gaišuma/melnā flash (FOUC).
+        --}}
+        <script>
+            (function(){
+                try {
+                    var t = localStorage.getItem('theme');
+                    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    if (t === 'dark' || (!t && prefersDark)) document.documentElement.classList.add('dark');
+                    else document.documentElement.classList.remove('dark');
+                } catch (e) { }
+            })();
+        </script>
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+        {{-- Lapas galvenais konteiners; izmanto `dark` klasi tumšajam režīmam --}}
         <div class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
             @include('layouts.navigation')
 
@@ -78,9 +95,10 @@
                 function attachThemeToggle() {
                     const btn = document.getElementById('theme-toggle');
                     if (!btn) return;
-                    btn.addEventListener('click', function (e) {
-                        e.preventDefault();
+                    btn.addEventListener('click', function () {
+                        // toggle theme and update aria state
                         window.toggleTheme();
+                        btn.setAttribute('aria-pressed', document.documentElement.classList.contains('dark') ? 'true' : 'false');
                     });
                 }
 

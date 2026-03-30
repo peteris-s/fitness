@@ -9,5 +9,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 
 abstract class Controller extends BaseController
 {
+    // Bāzes kontrolieris — izmanto Laravel traits autorizācijai, validācijai un darbu izvietošanai.
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }

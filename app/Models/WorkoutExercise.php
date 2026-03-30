@@ -23,11 +23,13 @@ class WorkoutExercise extends Model
 
     public function workout()
     {
+        // Pieder pie `Workout`
         return $this->belongsTo(Workout::class);
     }
 
     public function exercise()
     {
+        // Pieder pie `Exercise`
         return $this->belongsTo(Exercise::class);
     }
 }

@@ -23,11 +23,13 @@ class UserWorkout extends Model
 
     public function user()
     {
+        // Saite uz lietotāju, kurš pabeidza treniņu
         return $this->belongsTo(User::class);
     }
 
     public function workout()
     {
+        // Saite uz treniņu, kas pabeigts
         return $this->belongsTo(Workout::class);
     }
 }

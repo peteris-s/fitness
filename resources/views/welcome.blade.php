@@ -7,6 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <meta name="description" content="Track calories, create workouts and follow your fitness progress with FitTracker">
 </head>
+{{-- Welcome lapas veidne; ja tiek padots `$featured`, attēlo public workouts sadaļu. --}}
 <body class="bg-gray-900 text-white min-h-screen" style="background-color: #0f172a;">
     
     <nav class="bg-transparent">
@@ -15,7 +16,7 @@
         <div class="flex justify-start">
           <a href="/" class="flex items-center">
             <div class="rounded-md overflow-hidden bg-gray-900 p-1 dark:bg-transparent">
-              <x-application-logo class="h-8 w-8 block dark:invert" />
+              <x-application-logo class="h-10 w-10 block dark:invert" />
             </div>
           </a>
         </div>
@@ -130,6 +131,38 @@
       <h1 class="text-8xl md:text-9xl font-bold mb-4 text-white">Goodluck!</h1>
     </div>
     </section>
+
+      @if(!empty($featured) && $featured->count())
+      <section class="bg-gray-900">
+        <div class="max-w-6xl mx-auto px-6 py-20">
+          <h2 class="text-3xl font-bold text-white mb-6">Featured public workouts</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            @foreach($featured as $workout)
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-gray-800">
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ $workout->name }}</h3>
+                  @php $c = $workout->difficulty === 'beginner' ? 'green' : ($workout->difficulty === 'intermediate' ? 'yellow' : 'red'); @endphp
+                  <span class="text-xs px-2 py-1 rounded bg-{{ $c }}-100 text-{{ $c }}-800 dark:bg-{{ $c }}-800 dark:bg-opacity-30 dark:text-{{ $c }}-200">{{ $workout->difficulty }}</span>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">{{ Str::limit($workout->description, 80) }}</p>
+                <div class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <p>⏱️ {{ $workout->duration_minutes }} minutes</p>
+                  <p>👤 {{ $workout->user->name }}</p>
+                </div>
+                <div class="flex gap-2">
+                  <a href="{{ route('workouts.show', $workout) }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View</a>
+                  @auth
+                    @if($workout->is_public && auth()->id() !== $workout->user_id)
+                      <form method="POST" action="{{ route('plans.copy', $workout) }}">@csrf<button class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Copy</button></form>
+                    @endif
+                  @endauth
+                </div>
+              </div>
+            @endforeach
+          </div>
+        </div>
+      </section>
+      @endif
 
     
 

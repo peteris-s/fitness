@@ -31,22 +31,28 @@
                     </form>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {{-- $workouts: publikie treniņi, nodrošina kopēšanu un skatīšanos --}}
                         @forelse ($workouts as $workout)
-                            <div class="border border-gray-200 rounded-lg p-4 hover:shadow-lg transition">
+                            <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-lg transition bg-white dark:bg-gray-800">
                                 <div class="flex justify-between items-start mb-2">
                                     <h2 class="text-xl font-bold">{{ $workout->name }}</h2>
-                                    <span class="bg-{{ $workout->difficulty === 'beginner' ? 'green' : ($workout->difficulty === 'intermediate' ? 'yellow' : 'red') }}-100 text-{{ $workout->difficulty === 'beginner' ? 'green' : ($workout->difficulty === 'intermediate' ? 'yellow' : 'red') }}-800 text-xs px-3 py-1 rounded">
+                                    @php
+                                        // Aprēķina krāsu difficulty badge (beginner/intermediate/advanced)
+                                        $d = $workout->difficulty;
+                                        $color = $d === 'beginner' ? 'green' : ($d === 'intermediate' ? 'yellow' : 'red');
+                                    @endphp
+                                    <span class="text-xs px-3 py-1 rounded bg-{{ $color }}-100 text-{{ $color }}-800 dark:bg-{{ $color }}-800 dark:bg-opacity-30 dark:text-{{ $color }}-200">
                                         {{ $workout->difficulty }}
                                     </span>
                                 </div>
 
-                                    <p class="text-gray-600 text-sm mb-2">👤 {{ $workout->user->name }}</p>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">👤 {{ $workout->user->name }}</p>
 
                                 @if ($workout->description)
-                                    <p class="text-gray-600 text-sm mb-2">{{ Str::limit($workout->description, 100) }}</p>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">{{ Str::limit($workout->description, 100) }}</p>
                                 @endif
 
-                                <div class="text-sm text-gray-600 mb-4">
+                                <div class="text-sm text-gray-600 dark:text-gray-300 mb-4">
                                     <p>⏱️ {{ $workout->duration_minutes }} minutes</p>
                                     <p>👁️ {{ $workout->views }} times viewed</p>
                                 </div>
@@ -66,7 +72,7 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="col-span-3 text-center text-gray-500 py-8">
+                            <div class="col-span-3 text-center text-gray-500 dark:text-gray-400 py-8">
                                 No workouts found. Try different search parameters.
                             </div>
                         @endforelse
@@ -77,7 +83,7 @@
                     </div>
 
                     <div class="mt-6 flex gap-4">
-                        <a href="{{ route('workouts.index') }}" class="text-blue-500 hover:text-blue-700">← Back to my workouts</a>
+                        <a href="{{ route('workouts.index') }}" class="text-blue-500 dark:text-blue-300 hover:text-blue-700">← Back to my workouts</a>
                     </div>
                 </div>
             </div>

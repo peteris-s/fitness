@@ -1,4 +1,9 @@
 <x-app-layout>
+    {{--
+        Dashboard izmanto šādus mainīgos:
+        $totalToday, $dailyTarget, $recentLogs,
+        $recentWorkoutName, $recentWorkoutDate, $featured
+    --}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -71,6 +76,27 @@
                                 @endif
                             </div>
                         </div>
+                        @if(isset($featured) && count($featured))
+                            <div class="mt-6">
+                                <h3 class="text-lg font-semibold mb-3">Featured public workouts</h3>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    @foreach($featured as $f)
+                                        <a href="{{ route('workouts.show', $f->id) }}" class="block bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-lg p-4 hover:shadow">
+                                            <div class="flex items-start justify-between">
+                                                <div>
+                                                    <div class="text-sm text-gray-500 dark:text-gray-400">{{ $f->user->name ?? '—' }}</div>
+                                                    <div class="text-lg font-semibold text-gray-900 dark:text-gray-100">{{ $f->name }}</div>
+                                                </div>
+                                                <div class="text-sm text-gray-600 dark:text-gray-300">{{ $f->exercises()->count() }} ex</div>
+                                            </div>
+                                            @if($f->description)
+                                                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ Str::limit($f->description, 120) }}</p>
+                                            @endif
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -31,16 +31,19 @@ class User extends Authenticatable
 
     public function calorieLogs()
     {
+        // Attiecība: lietotājam ir daudz kaloriju ierakstu
         return $this->hasMany(CalorieLog::class);
     }
 
     public function workouts()
     {
+        // Lietotāja izveidotie treniņi
         return $this->hasMany(Workout::class);
     }
 
     public function completedWorkouts()
     {
+        // Pivot attiecība uz pabeigtajiem treniņiem ar papildu informāciju
         return $this->belongsToMany(Workout::class, 'user_workouts')
             ->withPivot('completed_at', 'duration_minutes', 'notes')
             ->withTimestamps();
@@ -48,6 +51,7 @@ class User extends Authenticatable
 
     public function userWorkouts()
     {
+        // Tiešā attiecība uz `UserWorkout` ierakstiem
         return $this->hasMany(UserWorkout::class);
     }
 }
