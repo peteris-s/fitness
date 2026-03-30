@@ -31,8 +31,10 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+        {{-- Top accent gradient bar for branding --}}
+        <div class="w-full h-1 bg-gradient-to-r from-purple-600 via-primary to-purple-400"></div>
         {{-- Lapas galvenais konteiners; izmanto `dark` klasi tumšajam režīmam --}}
-        <div class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+        <div class="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
             @include('layouts.navigation')
 
             

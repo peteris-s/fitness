@@ -13,14 +13,30 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Hero summary -->
+                <div class="lg:col-span-3">
+                    <div class="card mb-6">
+                        <div class="flex items-center justify-between gap-6">
+                            <div>
+                                <h1 class="text-2xl font-bold">Welcome back</h1>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Quick summary of your progress</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-600">Today</div>
+                                <div class="text-3xl font-extrabold text-purple-700">{{ isset($totalToday) ? $totalToday : '—' }}</div>
+                                <div class="text-sm text-gray-500">of {{ isset($dailyTarget) ? $dailyTarget : '—' }} kcal</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Quick actions -->
                 <div class="lg:col-span-1">
-                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+                    <div class="card p-6">
                         <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
-                            <div class="flex flex-col gap-3">
-                            <a href="{{ route('calories.create') }}" class="w-full text-center bg-purple-600 hover:bg-purple-700 text-white py-2 px-3 rounded">Add calories</a>
-                            <a href="{{ route('workouts.create') }}" class="w-full text-center bg-purple-500 hover:bg-purple-600 text-white py-2 px-3 rounded">Create workout</a>
-                            <a href="{{ route('workouts.browse') }}" class="w-full text-center bg-purple-400 hover:bg-purple-500 text-white py-2 px-3 rounded">Browse plans</a>
+                        <div class="flex flex-col gap-3">
+                            <a href="{{ route('calories.create') }}" class="btn-primary w-full">Add calories</a>
+                            <a href="{{ route('workouts.create') }}" class="btn-primary w-full">Create workout</a>
+                            <a href="{{ route('workouts.browse') }}" class="btn-primary w-full">Browse plans</a>
                         </div>
                         <div class="mt-6">
                             <h4 class="text-sm font-medium text-gray-500 dark:text-gray-300">Tips</h4>

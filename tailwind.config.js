@@ -26,6 +26,7 @@ export default {
                     900: '#581c87',
                 },
             },
+            primary: '#9333ea',
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },

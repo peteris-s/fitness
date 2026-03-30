@@ -6,4 +6,16 @@
 	.form-control {
 		@apply w-full px-3 py-2 border rounded-md bg-white dark:bg-slate-800 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-300 dark:focus:ring-purple-500;
 	}
+
+	.btn-primary {
+		@apply inline-flex items-center justify-center bg-primary text-white font-medium px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary/30;
+	}
+
+	.card {
+		@apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-transparent dark:border-gray-700;
+	}
+
+	.card-subtle {
+		@apply bg-purple-50 dark:bg-slate-800 rounded-xl p-4 border border-purple-100 dark:border-purple-700;
+	}
 }
