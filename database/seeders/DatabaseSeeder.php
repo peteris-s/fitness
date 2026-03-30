@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             \Database\Seeders\ExerciseSeeder::class,
             \Database\Seeders\WorkoutSeeder::class,
+            \Database\Seeders\DemoWorkoutSeeder::class,
             \Database\Seeders\CalorieSeeder::class,
         ]);
     }

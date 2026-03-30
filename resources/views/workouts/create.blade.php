@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="description" class="block text-gray-700 font-bold mb-2">Apraksts</label>
+                            <label for="description" class="block text-gray-700 font-bold mb-2">Description</label>
                             <textarea name="description" id="description" rows="4"
                                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 placeholder-gray-400 dark:placeholder-gray-400 text-gray-900 dark:text-gray-100 bg-white dark:bg-slate-700 dark:border-gray-600 focus:ring-2 focus:ring-purple-300 dark:focus:ring-purple-500 form-control">{{ old('description') }}</textarea>
                             @error('description')

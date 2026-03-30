@@ -28,9 +28,35 @@
                     <x-nav-link :href="route('plans.index')" :active="request()->routeIs('plans.*')">
                         {{ __('Workout Plans') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('workouts.browse')" :active="request()->routeIs('workouts.*')">
-                        {{ __('Workouts') }}
-                    </x-nav-link>
+                    @auth
+                        <x-dropdown align="left" width="56">
+                            <x-slot name="trigger">
+                                @php
+                                    $workoutsActive = request()->routeIs('workouts.*');
+                                    $triggerClasses = $workoutsActive
+                                        ? 'inline-flex items-center px-1 pt-1 border-b-2 border-purple-500 text-sm font-medium leading-5 text-purple-700 dark:text-white focus:outline-none focus:border-purple-700 transition duration-150 ease-in-out'
+                                        : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-600 dark:text-gray-100 hover:text-purple-700 dark:hover:text-white hover:border-purple-200 focus:outline-none focus:text-purple-700 focus:border-purple-200 transition duration-150 ease-in-out';
+                                @endphp
+                                <button type="button" class="{{ $triggerClasses }}">
+                                    <div class="mr-2">My Workouts</div>
+                                    <div>
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                </button>
+                            </x-slot>
+
+                                <x-slot name="content">
+                                    <x-dropdown-link :href="route('workouts.create')">Create new workout</x-dropdown-link>
+                                    <x-dropdown-link :href="route('workouts.index')">Manage my workouts</x-dropdown-link>
+                                </x-slot>
+                        </x-dropdown>
+                    @else
+                        <x-nav-link :href="route('workouts.browse')" :active="request()->routeIs('workouts.*')">
+                            {{ __('Workouts') }}
+                        </x-nav-link>
+                    @endauth
                 </div>
             </div>
 
@@ -107,6 +133,13 @@
                 <x-responsive-nav-link :href="route('workouts.browse')" :active="request()->routeIs('workouts.*')">
                     {{ __('Workouts') }}
                 </x-responsive-nav-link>
+                @auth
+                    <div class="px-4 pt-4 pb-2 border-t border-gray-100 dark:border-gray-700">
+                        <div class="font-medium text-sm text-gray-700">My Workouts</div>
+                    </div>
+                    <x-responsive-nav-link :href="route('workouts.create')">Create new workout</x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('workouts.index')">Manage my workouts</x-responsive-nav-link>
+                @endauth
         </div>
 
         <!-- Responsive Settings Options -->

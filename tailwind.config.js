@@ -13,6 +13,7 @@ export default {
     theme: {
         extend: {
             colors: {
+                primary: '#9333ea',
                 purple: {
                     50: '#faf5ff',
                     100: '#f3e8ff',
@@ -26,7 +27,6 @@ export default {
                     900: '#581c87',
                 },
             },
-            primary: '#9333ea',
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },

@@ -10,6 +10,12 @@
     @if(session('success'))
         <div class="mb-4 p-4 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-200 rounded">{{ session('success') }}</div>
     @endif
+    @if(session('info'))
+        <div class="mb-4 p-4 bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-200 rounded">{{ session('info') }}</div>
+    @endif
+    @if(session('error'))
+        <div class="mb-4 p-4 bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-200 rounded">{{ session('error') }}</div>
+    @endif
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <section>

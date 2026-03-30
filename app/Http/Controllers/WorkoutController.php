@@ -211,32 +211,47 @@ class WorkoutController extends Controller
             abort(403);
         }
 
-        DB::transaction(function () use ($workout) {
-            $new = Workout::create([
-                'user_id' => auth()->id(),
-                'name' => $workout->name . ' (kopija)',
-                'description' => $workout->description,
-                'difficulty' => $workout->difficulty,
-                'duration_minutes' => $workout->duration_minutes,
-                'is_public' => false,
-                'views' => 0,
-                'copied_from_id' => $workout->id,
-            ]);
+        // Prevent copying the same source workout multiple times
+        $user = auth()->user();
+        $alreadyCopied = $user->workouts()->where('copied_from_id', $workout->id)->exists();
+        if ($alreadyCopied) {
+            return redirect()->route('plans.index')->with('info', 'You already copied this workout.');
+        }
 
-            // copy exercises
-            foreach ($workout->workoutExercises()->orderBy('order')->get() as $we) {
-                WorkoutExercise::create([
-                    'workout_id' => $new->id,
-                    'exercise_id' => $we->exercise_id,
-                    'sets' => $we->sets,
-                    'reps' => $we->reps,
-                    'duration_seconds' => $we->duration_seconds,
-                    'rest_seconds' => $we->rest_seconds,
-                    'order' => $we->order,
+        $new = null;
+        try {
+            DB::transaction(function () use ($workout, &$new) {
+                $new = Workout::create([
+                    'user_id' => auth()->id(),
+                    'name' => $workout->name . ' (kopija)',
+                    'description' => $workout->description,
+                    'difficulty' => $workout->difficulty,
+                    'duration_minutes' => $workout->duration_minutes,
+                    'is_public' => false,
+                    'views' => 0,
+                    'copied_from_id' => $workout->id,
                 ]);
-            }
-        });
 
-        return redirect()->route('plans.index')->with('success', 'Workout copied to your plans.');
+                // copy exercises
+                foreach ($workout->workoutExercises()->orderBy('order')->get() as $we) {
+                    WorkoutExercise::create([
+                        'workout_id' => $new->id,
+                        'exercise_id' => $we->exercise_id,
+                        'sets' => $we->sets,
+                        'reps' => $we->reps,
+                        'duration_seconds' => $we->duration_seconds,
+                        'rest_seconds' => $we->rest_seconds,
+                        'order' => $we->order,
+                    ]);
+                }
+            });
+
+            
+            
+            return redirect()->route('plans.index')->with('success', 'Workout copied to your plans.');
+        } catch (\Throwable $e) {
+            \Log::error('Failed to copy workout', ['error' => $e->getMessage(), 'workout_id' => $workout->id, 'user_id' => auth()->id()]);
+            return redirect()->route('plans.index')->with('error', 'Failed to copy workout — check logs.');
+        }
     }
 }
