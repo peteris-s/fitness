@@ -2,7 +2,7 @@
     Navigācija: satur saites uz galvenajām lapām un tēmas pārslēdzēju.
     Pogai `#theme-toggle` tiek piesaistīts JS handler skriptā `layouts.app`.
 --}}
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="bg-white dark:bg-gray-900 border-b border-purple-50 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -37,7 +37,7 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <!-- Theme toggle -->
-                <button id="theme-toggle" type="button" title="Toggle dark mode" class="me-3 p-2 rounded-md text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white bg-white/10 dark:bg-white/5 border border-transparent hover:border-gray-200 dark:hover:border-gray-600 focus:ring-2 focus:ring-blue-400" aria-label="Toggle theme" aria-pressed="false">
+                <button id="theme-toggle" type="button" title="Toggle dark mode" class="me-3 p-2 rounded-md text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-white bg-white/10 dark:bg-white/5 border border-transparent hover:border-purple-100 dark:hover:border-gray-600 focus:ring-2 focus:ring-purple-400" aria-label="Toggle theme" aria-pressed="false">
                     <!-- Moon (dark) icon -->
                     <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M21.752 15.002A9.718 9.718 0 0112.75 22C6.201 22 1 16.799 1 10.25 1 4.701 6.201-.5 12.75-.5c.756 0 1.506.064 2.244.19.422.07.735.45.735.882 0 .238-.092.466-.255.64a.996.996 0 01-1.12.233 7.472 7.472 0 00-3.39-.737C7.507 0 3.25 4.257 3.25 9.75 3.25 15.243 7.507 19.5 13 19.5c3.04 0 5.77-1.46 7.502-3.748.293-.382.117-.914-.75-.75z"/>
@@ -50,7 +50,7 @@
 
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-200 bg-white dark:bg-transparent hover:text-gray-700 dark:hover:text-gray-100 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-600 dark:text-gray-200 bg-white dark:bg-transparent hover:text-purple-700 dark:hover:text-gray-100 focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
@@ -82,7 +82,7 @@
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-purple-700 hover:bg-purple-50 focus:outline-none focus:bg-purple-50 focus:text-purple-700 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
