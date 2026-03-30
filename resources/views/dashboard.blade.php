@@ -17,10 +17,10 @@
                 <div class="lg:col-span-1">
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
                         <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
-                        <div class="flex flex-col gap-3">
-                            <a href="{{ route('calories.create') }}" class="w-full text-center bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 rounded">Add calories</a>
-                            <a href="{{ route('workouts.create') }}" class="w-full text-center bg-green-500 hover:bg-green-600 text-white py-2 px-3 rounded">Create workout</a>
-                            <a href="{{ route('workouts.browse') }}" class="w-full text-center bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-3 rounded">Browse plans</a>
+                            <div class="flex flex-col gap-3">
+                            <a href="{{ route('calories.create') }}" class="w-full text-center bg-purple-600 hover:bg-purple-700 text-white py-2 px-3 rounded">Add calories</a>
+                            <a href="{{ route('workouts.create') }}" class="w-full text-center bg-purple-500 hover:bg-purple-600 text-white py-2 px-3 rounded">Create workout</a>
+                            <a href="{{ route('workouts.browse') }}" class="w-full text-center bg-purple-400 hover:bg-purple-500 text-white py-2 px-3 rounded">Browse plans</a>
                         </div>
                         <div class="mt-6">
                             <h4 class="text-sm font-medium text-gray-500 dark:text-gray-300">Tips</h4>
@@ -37,15 +37,15 @@
                 <div class="lg:col-span-2">
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
                         <div class="flex flex-col md:flex-row md:items-stretch md:gap-4">
-                            <div class="flex-1 bg-blue-50 dark:bg-slate-700 p-4 rounded-lg">
+                            <div class="flex-1 bg-purple-50 dark:bg-slate-700 p-4 rounded-lg">
                                 <p class="text-sm text-gray-600 dark:text-gray-300">Today total</p>
-                                <p class="text-3xl font-bold text-blue-600 dark:text-blue-300">{{ isset($totalToday) ? $totalToday : '—' }}</p>
+                                <p class="text-3xl font-bold text-purple-700 dark:text-purple-300">{{ isset($totalToday) ? $totalToday : '—' }}</p>
                                 <p class="text-sm text-gray-600 dark:text-gray-300">calories</p>
                             </div>
 
-                            <div class="flex-1 bg-green-50 dark:bg-slate-700 p-4 rounded-lg mt-4 md:mt-0">
+                            <div class="flex-1 bg-purple-50 dark:bg-slate-700 p-4 rounded-lg mt-4 md:mt-0">
                                 <p class="text-sm text-gray-600 dark:text-gray-300">Daily target</p>
-                                <p class="text-3xl font-bold text-green-600 dark:text-green-300">{{ isset($dailyTarget) ? $dailyTarget : 'Not set' }}</p>
+                                <p class="text-3xl font-bold text-purple-600 dark:text-purple-300">{{ isset($dailyTarget) ? $dailyTarget : 'Not set' }}</p>
                                 <p class="text-sm text-gray-600 dark:text-gray-300">calories</p>
                             </div>
 
