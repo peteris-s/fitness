@@ -15,7 +15,7 @@
                         <div class="mb-4">
                             <label for="food_name" class="block text-gray-700 font-bold mb-2">Food item *</label>
                             <input type="text" name="food_name" id="food_name" value="{{ $calorieLog->food_name }}" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 form-control"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 form-control"
                                 required>
                             @error('food_name')
                                 <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -25,7 +25,7 @@
                         <div class="mb-4">
                             <label for="calories" class="block text-gray-700 font-bold mb-2">Calories (kcal) *</label>
                             <input type="number" name="calories" id="calories" value="{{ $calorieLog->calories }}" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 form-control"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 form-control"
                                 min="1" max="10000" required>
                                    min="1" max="10000" required>
                             @error('calories')
@@ -36,7 +36,7 @@
                         <div class="mb-4">
                             <label for="description" class="block text-gray-700 font-bold mb-2">Description</label>
                             <textarea name="description" id="description" rows="3"
-                                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 form-control">{{ $calorieLog->description }}</textarea>
+                                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 form-control">{{ $calorieLog->description }}</textarea>
                             @error('description')
                                 <p class="text-red-500 text-sm">{{ $message }}</p>
                             @enderror
@@ -45,7 +45,7 @@
                         <div class="mb-6">
                             <label for="log_date" class="block text-gray-700 font-bold mb-2">Date *</label>
                             <input type="date" name="log_date" id="log_date" value="{{ $calorieLog->log_date->format('Y-m-d') }}" 
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 form-control"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 form-control"
                                    required>
                             @error('log_date')
                                 <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
                                 Update
                             </button>
                             <a href="{{ route('calories.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">

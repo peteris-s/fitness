@@ -8,7 +8,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-200">
                     <div class="flex justify-between items-center mb-6">
                         <h1 class="text-3xl font-bold">My Workouts</h1>
-                            <a href="{{ route('workouts.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <a href="{{ route('workouts.create') }}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
                             Create new workout
                         </a>
                     </div>
@@ -40,7 +40,7 @@
                                 </div>
 
                                 <div class="flex gap-2">
-                                        <a href="{{ route('workouts.show', $workout) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-sm">
+                                        <a href="{{ route('workouts.show', $workout) }}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-1 px-3 rounded text-sm">
                                         View
                                     </a>
                                     <a href="{{ route('workouts.edit', $workout) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded text-sm">
@@ -57,7 +57,7 @@
                             </div>
                         @empty
                             <div class="col-span-3 text-center text-gray-500 py-8">
-                                No workouts created. <a href="{{ route('workouts.create') }}" class="text-blue-500 hover:text-blue-700">Create the first workout.</a>
+                                No workouts created. <a href="{{ route('workouts.create') }}" class="text-purple-600 hover:text-purple-700">Create the first workout.</a>
                             </div>
                         @endforelse
                     </div>
@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="mt-6 flex gap-4">
-                        <a href="{{ route('workouts.browse') }}" class="text-blue-500 hover:text-blue-700">Browse other workouts →</a>
+                        <a href="{{ route('workouts.browse') }}" class="text-purple-600 hover:text-purple-700">Browse other workouts →</a>
                     </div>
                 </div>
             </div>

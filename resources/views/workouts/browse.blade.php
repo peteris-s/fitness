@@ -13,18 +13,18 @@
                     <form method="GET" action="{{ route('workouts.search') }}" class="mb-6">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
-                                <input type="text" name="q" placeholder="Search workouts..." value="{{ request('q') }}"
-                                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 form-control">
+                                    <input type="text" name="q" placeholder="Search workouts..." value="{{ request('q') }}"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 form-control">
                             </div>
                             <div>
-                                <select name="difficulty" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 form-control">
+                                <select name="difficulty" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 form-control">
                                     <option value="">All difficulties</option>
                                     <option value="beginner" {{ request('difficulty') === 'beginner' ? 'selected' : '' }}>Beginner</option>
                                     <option value="intermediate" {{ request('difficulty') === 'intermediate' ? 'selected' : '' }}>Intermediate</option>
                                     <option value="advanced" {{ request('difficulty') === 'advanced' ? 'selected' : '' }}>Advanced</option>
                                 </select>
                             </div>
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
                                 Search
                             </button>
                         </div>
@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="space-y-2">
-                                    <a href="{{ route('workouts.show', $workout) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full text-center block">
+                                    <a href="{{ route('workouts.show', $workout) }}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded w-full text-center block">
                                         View details
                                     </a>
                                     @auth
@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="mt-6 flex gap-4">
-                        <a href="{{ route('workouts.index') }}" class="text-blue-500 dark:text-blue-300 hover:text-blue-700">← Back to my workouts</a>
+                        <a href="{{ route('workouts.index') }}" class="text-purple-600 dark:text-purple-300 hover:text-purple-700">← Back to my workouts</a>
                     </div>
                 </div>
             </div>

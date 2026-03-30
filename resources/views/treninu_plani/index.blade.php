@@ -4,7 +4,7 @@
 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-8">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold">Workout Plans</h1>
-        <a href="{{ route('workouts.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create your plan</a>
+        <a href="{{ route('workouts.create') }}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">Create your plan</a>
     </div>
 
     @if(session('success'))
@@ -25,7 +25,7 @@
                         </div>
                         <p class="text-sm text-gray-600 dark:text-gray-300">{{ Str::limit($plan->description, 120) }}</p>
                         <div class="mt-3 flex gap-2">
-                            <a href="{{ route('workouts.show', $plan) }}" class="text-blue-500">View</a>
+                            <a href="{{ route('workouts.show', $plan) }}" class="text-purple-600 hover:text-purple-700">View</a>
                             <a href="{{ route('workouts.edit', $plan) }}" class="text-gray-600">Edit</a>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                                     @csrf
                                     <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-sm">Copy</button>
                                 </form>
-                                <a href="{{ route('workouts.show', $plan) }}" class="block text-blue-500 mt-2">View</a>
+                                <a href="{{ route('workouts.show', $plan) }}" class="block text-purple-600 hover:text-purple-700 mt-2">View</a>
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-200">
                     <div class="flex justify-between items-center mb-6">
                         <h1 class="text-3xl font-bold">Calorie tracking</h1>
-                        <a href="{{ route('calories.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <a href="{{ route('calories.create') }}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
                             Add calories
                         </a>
                     </div>
@@ -22,9 +22,9 @@
                     @endif
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                        <div class="bg-blue-50 dark:bg-slate-700 p-4 rounded-lg">
+                        <div class="bg-purple-50 dark:bg-slate-700 p-4 rounded-lg">
                             <p class="text-gray-600 dark:text-gray-300">Today total</p>
-                            <p class="text-3xl font-bold text-blue-600 dark:text-blue-300">{{ $totalToday }}</p>
+                            <p class="text-3xl font-bold text-purple-700 dark:text-purple-300">{{ $totalToday }}</p>
                             <p class="text-sm text-gray-600 dark:text-gray-300">calories</p>
                         </div>
 
@@ -43,8 +43,8 @@
                                 <div class="flex gap-2">
                                      <input type="number" name="daily_calorie_target" id="daily_calorie_target" min="0" max="100000"
                                          value="{{ old('daily_calorie_target', $dailyTarget) }}"
-                                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 bg-white dark:bg-slate-800 dark:border-gray-600 text-gray-900 dark:text-gray-100 form-control">
-                                    <button id="target-save" type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button>
+                                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 bg-white dark:bg-slate-800 dark:border-gray-600 text-gray-900 dark:text-gray-100 form-control">
+                                     <button id="target-save" type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">Save</button>
                                 </div>
                                 <p id="target-error" class="text-red-500 text-sm mt-2" style="display:none;"></p>
                                 <p id="target-success" class="text-green-600 text-sm mt-2" style="display:none;"></p>
@@ -75,7 +75,7 @@
                                         <td class="px-4 py-2 text-gray-900 dark:text-gray-100">{{ $log->calories }}</td>
                                         <td class="px-4 py-2 text-gray-900 dark:text-gray-100">{{ $log->log_date->format('Y-m-d') }}</td>
                                         <td class="px-4 py-2">
-                                            <a href="{{ route('calories.edit', $log) }}" class="text-blue-500 dark:text-blue-300 hover:text-blue-700 mr-2">Edit</a>
+                                            <a href="{{ route('calories.edit', $log) }}" class="text-purple-600 dark:text-purple-300 hover:text-purple-700 mr-2">Edit</a>
                                             <form action="{{ route('calories.destroy', $log) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="mt-6">
-                        <a href="{{ route('calories.stats') }}" class="text-blue-500 hover:text-blue-700">View statistics →</a>
+                        <a href="{{ route('calories.stats') }}" class="text-purple-600 hover:text-purple-700">View statistics →</a>
                     </div>
                 </div>
             </div>

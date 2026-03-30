@@ -30,7 +30,7 @@
         <div class="flex justify-end">
           <div class="flex items-center gap-3">
             @auth
-              <a href="{{ route('dashboard') }}" class="text-sm px-3 py-1.5 border border-transparent bg-blue-600 text-white rounded">Dashboard</a>
+              <a href="{{ route('dashboard') }}" class="text-sm px-3 py-1.5 border border-transparent bg-purple-600 text-white rounded">Dashboard</a>
               <form method="POST" action="{{ route('logout') }}" class="inline-block">
                 @csrf
                 <button type="submit" class="text-sm px-3 py-1.5 text-white hover:text-gray-200">Logout</button>
@@ -64,19 +64,19 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div class="p-4 bg-black/60 rounded text-center">
-                <div class="w-10 h-10 mx-auto flex items-center justify-center bg-blue-600 rounded-full font-bold mb-2">1</div>
+                <div class="w-10 h-10 mx-auto flex items-center justify-center bg-purple-600 rounded-full font-bold mb-2">1</div>
                 <div class="font-semibold">Sign up</div>
                 <div class="text-sm text-gray-300">Create a free account, quick and easy.</div>
               </div>
 
               <div class="p-4 bg-black/60 rounded text-center">
-                <div class="w-10 h-10 mx-auto flex items-center justify-center bg-blue-600 rounded-full font-bold mb-2">2</div>
+                <div class="w-10 h-10 mx-auto flex items-center justify-center bg-purple-600 rounded-full font-bold mb-2">2</div>
                 <div class="font-semibold">Pick a goal</div>
                 <div class="text-sm text-gray-300">Choose a plan that fits your week.</div>
               </div>
 
               <div class="p-4 bg-black/60 rounded text-center">
-                <div class="w-10 h-10 mx-auto flex items-center justify-center bg-blue-600 rounded-full font-bold mb-2">3</div>
+                <div class="w-10 h-10 mx-auto flex items-center justify-center bg-purple-600 rounded-full font-bold mb-2">3</div>
                 <div class="font-semibold">Log & improve</div>
                 <div class="text-sm text-gray-300">Track workouts and meals, see progress.</div>
               </div>
@@ -119,7 +119,7 @@
             </div>
 
             <div class="text-center mt-6">
-              <a href="{{ route('register') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded">Try it free</a>
+              <a href="{{ route('register') }}" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded">Try it free</a>
             </div>
           </div>
         </div>
@@ -150,7 +150,7 @@
                   <p>👤 {{ $workout->user->name }}</p>
                 </div>
                 <div class="flex gap-2">
-                  <a href="{{ route('workouts.show', $workout) }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">View</a>
+                  <a href="{{ route('workouts.show', $workout) }}" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">View</a>
                   @auth
                     @if($workout->is_public && auth()->id() !== $workout->user_id)
                       <form method="POST" action="{{ route('plans.copy', $workout) }}">@csrf<button class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Copy</button></form>

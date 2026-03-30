@@ -15,7 +15,7 @@
                         <div class="mb-4">
                             <label for="name" class="block text-gray-700 font-bold mb-2">Workout name *</label>
                                     <input type="text" name="name" id="name" value="{{ $workout->name }}" 
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-400 dark:placeholder-gray-400 text-gray-900 dark:text-gray-100 bg-white dark:bg-slate-700 dark:border-gray-600 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-500 form-control"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 placeholder-gray-400 dark:placeholder-gray-400 text-gray-900 dark:text-gray-100 bg-white dark:bg-slate-700 dark:border-gray-600 focus:ring-2 focus:ring-purple-300 dark:focus:ring-purple-500 form-control"
                                        required>
                             @error('name')
                                 <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -25,7 +25,7 @@
                         <div class="mb-4">
                             <label for="description" class="block text-gray-700 font-bold mb-2">Description</label>
                                 <textarea name="description" id="description" rows="4"
-                                          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 placeholder-gray-400 dark:placeholder-gray-400 text-gray-900 dark:text-gray-100 bg-white dark:bg-slate-700 dark:border-gray-600 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-500 form-control">{{ $workout->description }}</textarea>
+                                          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 placeholder-gray-400 dark:placeholder-gray-400 text-gray-900 dark:text-gray-100 bg-white dark:bg-slate-700 dark:border-gray-600 focus:ring-2 focus:ring-purple-300 dark:focus:ring-purple-500 form-control">{{ $workout->description }}</textarea>
                             @error('description')
                                 <p class="text-red-500 text-sm">{{ $message }}</p>
                             @enderror
@@ -34,7 +34,7 @@
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
                                 <label for="difficulty" class="block text-gray-700 font-bold mb-2">Difficulty *</label>
-                                <select name="difficulty" id="difficulty" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 form-control" required>
+                                <select name="difficulty" id="difficulty" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 form-control" required>
                                     <option value="beginner" {{ $workout->difficulty === 'beginner' ? 'selected' : '' }}>Beginner</option>
                                     <option value="intermediate" {{ $workout->difficulty === 'intermediate' ? 'selected' : '' }}>Intermediate</option>
                                     <option value="advanced" {{ $workout->difficulty === 'advanced' ? 'selected' : '' }}>Advanced</option>
@@ -47,7 +47,7 @@
                             <div>
                                 <label for="duration_minutes" class="block text-gray-700 font-bold mb-2">Duration (minutes) *</label>
                                     <input type="number" name="duration_minutes" id="duration_minutes" value="{{ $workout->duration_minutes }}" 
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 form-control"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 form-control"
                                        min="5" max="480" required>
                                 @error('duration_minutes')
                                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -153,7 +153,7 @@
                         </div>
 
                         <div class="flex gap-4">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
                                 Update workout
                             </button>
                             <a href="{{ route('workouts.show', $workout) }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">

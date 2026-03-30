@@ -62,8 +62,8 @@
                     @endif
 
                     <div class="grid grid-cols-4 gap-4 mb-6">
-                        <div class="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg border border-blue-200 dark:border-blue-700">
-                            <p class="text-blue-700 dark:text-blue-200 text-sm">Difficulty</p>
+                        <div class="bg-purple-50 dark:bg-purple-900 p-4 rounded-lg border border-purple-100 dark:border-purple-700">
+                            <p class="text-purple-700 dark:text-purple-200 text-sm">Difficulty</p>
                             <p class="text-lg font-bold text-gray-900 dark:text-gray-100">{{ $workout->difficulty }}</p>
                         </div>
                         <div class="bg-green-50 dark:bg-green-900 p-4 rounded-lg border border-green-200 dark:border-green-700">
@@ -146,7 +146,7 @@
                     @endauth
 
                     <div class="mt-6">
-                        <a href="{{ route('workouts.browse') }}" class="text-blue-500 hover:text-blue-700">← Back to workouts</a>
+                        <a href="{{ route('workouts.browse') }}" class="text-purple-600 hover:text-purple-700">← Back to workouts</a>
                     </div>
                 </div>
             </div>

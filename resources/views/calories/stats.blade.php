@@ -10,9 +10,9 @@
 
                     {{-- $statsToday — šodienas summa; $stats7Days — pēdējo 7 dienu kopsavilkums; $stats30Days — pēdējo 30 dienu dati. --}}
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                        <div class="bg-blue-50 dark:bg-slate-700 p-4 rounded-lg">
+                        <div class="bg-purple-50 dark:bg-slate-700 p-4 rounded-lg">
                             <p class="text-gray-600 dark:text-gray-300">Today total</p>
-                            <p class="text-3xl font-bold text-blue-600 dark:text-blue-300">{{ $statsToday }}</p>
+                            <p class="text-3xl font-bold text-purple-700 dark:text-purple-300">{{ $statsToday }}</p>
                             <p class="text-sm text-gray-600 dark:text-gray-300">calories</p>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="mt-6">
-                        <a href="{{ route('calories.index') }}" class="text-blue-500 hover:text-blue-700">← Back to calorie tracking</a>
+                        <a href="{{ route('calories.index') }}" class="text-purple-600 hover:text-purple-700">← Back to calorie tracking</a>
                     </div>
                 </div>
             </div>
